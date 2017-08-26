@@ -55,6 +55,8 @@ import seg.jUCMNav.actions.ChangeColorAction;
 import seg.jUCMNav.actions.ChangeComponentTypeAction;
 import seg.jUCMNav.actions.ChangeCorrelationAction;
 import seg.jUCMNav.actions.ChangeDecompositionTypeAction;
+import seg.jUCMNav.actions.ChangeImpactAnalysisAction;
+import seg.jUCMNav.actions.ChangeImpactAnalysisModificationAction;
 import seg.jUCMNav.actions.ChangeLinkAction;
 import seg.jUCMNav.actions.ChangeLinkMandatoryAction;
 import seg.jUCMNav.actions.ChangeLinkORAction;
@@ -333,6 +335,16 @@ public class ActionRegistryManager implements IDisposable {
 
         action = new DeleteEvaluationRangeAction(editor);
         action.setText(Messages.getString("ActionRegistryManager.DeleteEvaluationRange")); //$NON-NLS-1$
+        addEditPartAction((SelectionAction) action);
+        
+        //GRL Change Impact Analysis Addition/Deletion action @hasanKaff
+        action = new ChangeImpactAnalysisAction(editor);
+        action.setText(Messages.getString("ActionRegistryManager.ChangeImpactAnalysis"));
+        addEditPartAction((SelectionAction) action);
+        
+        //GRL Change Impact Analysis Modification action @hasanKaff
+        action = new ChangeImpactAnalysisModificationAction(editor);
+        action.setText(Messages.getString("ActionRegistryManager.ChangeImpactAnalysisModification"));
         addEditPartAction((SelectionAction) action);
         
         action = new DeleteContributionRangeAction(editor);

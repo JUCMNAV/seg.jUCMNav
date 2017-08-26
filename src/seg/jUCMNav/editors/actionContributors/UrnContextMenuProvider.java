@@ -38,6 +38,8 @@ import seg.jUCMNav.actions.ChangeColorAction;
 import seg.jUCMNav.actions.ChangeComponentTypeAction;
 import seg.jUCMNav.actions.ChangeCorrelationAction;
 import seg.jUCMNav.actions.ChangeDecompositionTypeAction;
+import seg.jUCMNav.actions.ChangeImpactAnalysisAction;
+import seg.jUCMNav.actions.ChangeImpactAnalysisModificationAction;
 import seg.jUCMNav.actions.ChangeLinkMandatoryAction;
 import seg.jUCMNav.actions.ChangeLinkORAction;
 import seg.jUCMNav.actions.ChangeLinkOptionalAction;
@@ -305,6 +307,17 @@ public class UrnContextMenuProvider extends ContextMenuProvider {
 
         manager.add(new Separator(GROUP_UNCOMMON));
 
+        //GRL Change Impact Analysis action @hasanKaff
+        actions = new IAction[2];
+        actions[0] = getActionRegistry().getAction(ChangeImpactAnalysisAction.ChangeImpactAnalysis);  
+        actions[1] = getActionRegistry().getAction(ChangeImpactAnalysisModificationAction.ChangeImpactAnalysisModification);
+         
+        submenu = new SubmenuAction(actions,
+        		Messages.getString("ActionRegistryManager.CIA"),
+        		"Change Impact Analysis", JUCMNavPlugin.getImageDescriptor("icons/StrategyNumImp16.gif"), true); //$NON-NLS-1$ //$NON-NLS-2$		
+        if(submenu.getActiveOperationCount() > 0)
+        	manager.appendToGroup(GEFActionConstants.GROUP_EDIT, submenu);
+        
         // IE Importance and Evaluation
         action = getActionRegistry().getAction(SelectFeatureAction.SELECTFEATURE);
         if (action.isEnabled())
